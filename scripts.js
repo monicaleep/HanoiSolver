@@ -22,7 +22,7 @@ function play(){
   var loop = 0;
   var id = setInterval(function() {
     loop++;
-    if(loop === Math.pow(2,num)-4)
+    if(loop === Math.pow(2,num)-1)
     {
         clearInterval(id);
     }
