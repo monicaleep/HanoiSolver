@@ -1,0 +1,48 @@
+header{
+  margin: auto;
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+}
+
+.holder{
+  display: flex;
+  width: 30%;
+  align-items: center;
+  justify-content: center;
+  height: inherit;
+  position: relative;
+  border: solid black 1px;
+}
+
+.piece{
+  position:fixed;
+  border-radius: 10px;
+  border: solid red 1px;
+
+}
+
+#p10{
+  width: 200px;
+  height: 200px;
+  border: solid red 1px;
+}
+
+#p9{
+  height: 180px;
+  width: 180px;
+  border: solid black 1px;
+}
+
+
+.game{
+  border: solid black 1px;
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 500px;
+}
