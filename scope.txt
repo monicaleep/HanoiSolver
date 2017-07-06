@@ -4,14 +4,18 @@ Make board - 3 wells (flexbox)
 
 CSS -
 Style discs
-Add z-index to each disk when opaque
+Determine mathematics for disks to align-items
+Design "board"
 
 
 JS -
-Draw discs on command with number of discs as per user input -done
+Draw discs on command with number of discs as per user input
+  Adjust height of tower?
   Add random color  to each disc
   Add id to each disc for tracking - is it necessary?
+Iterate through the movements to solve the problem
 Move disc from one well to another well
+  Define what a legal move is
   Remove smallest disk from parent container and store its state
     Keep track if we are adding disks to top or bottom of a div
   Add disk to new container

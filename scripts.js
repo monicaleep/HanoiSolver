@@ -1,19 +1,33 @@
 var num;
-var stack;
 var nextMove;
-var start = document.getElementById('start');
-start.addEventListener("click", play);
-var sourceDiv = document.getElementById("Source");
-var targetDiv = document.getElementById("Target");
-var auxDiv = document.getElementById("Aux")
+var $start = $('#start');
+var $source = $("#Source");
+var $target = $("#Target");
+var $aux = $("#Aux");
+
+
+$start.on("click",function(){
+  $('.disc').remove();
+  num = $('#number').val();
+  for(let i = 0; i<num; i++){
+    var disc = $("<div></div>");
+    disc.attr('class',"disc");
+    disc.attr('id','d'+(i+1));
+    disc.css('width',(i+1)*20+"px");
+    disc.css('top',361-(num-i-1)*15);
+    disc.css('height',"15px");
+    disc.css('background-color',getRanC());
+    $source.append(disc);
+
+  }
+});
+
+
+
 
 function play(){
   setNum();
-  src = [];
   stack = [];
-  for (let i = 0; i<num; i++){
-    src.push(i+1);
-  }
   sourceDiv.innerHTML = "";
   targetDiv.innerHTML = "";
   auxDiv.innerHTML = "";
@@ -52,7 +66,7 @@ function draw(){
 }
 
 //get number of disks from user
-var setNum = () => num = document.getElementsByName('number')[0].value;
+var setNum = () => num = $('#number').val();
 
 function solve(source, target, auxi, n){
     if (n>0){
@@ -63,5 +77,11 @@ function solve(source, target, auxi, n){
       //target.push(source.pop()); //make this work for .divs.
       solve(auxi, target, source, n-1);
     }
+}
 
+function getRanC() {
+  var r = Math.floor(Math.random() * 255);
+  var g = Math.floor(Math.random() * 255);
+  var b = Math.floor(Math.random() * 255);
+  return "rgb(" + r + "," + g + "," + b + ")";
 }

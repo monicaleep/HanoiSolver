@@ -5,6 +5,21 @@ header{
   justify-content: space-around;
   margin-bottom: 50px;
 }
+.bar{
+  width:70%;
+  height:40px;
+  background-color: black;
+  margin: auto;
+}
+.pole{
+  display: flex;
+  width: 5%;
+  z-index: -1;
+  position:absolute;
+  background-color: black;
+  height: 200px;
+  align-self: flex-end;
+}
 
 .holder{
   display: flex;
@@ -16,25 +31,11 @@ header{
   border: solid black 1px;
 }
 
-.piece{
-  position:fixed;
-  border-radius: 10px;
-  border: solid red 1px;
-
+.disc{
+  position: fixed;
+  display:block;
+  align-self: flex-end;
 }
-
-#p10{
-  width: 200px;
-  height: 200px;
-  border: solid red 1px;
-}
-
-#p9{
-  height: 180px;
-  width: 180px;
-  border: solid black 1px;
-}
-
 
 .game{
   border: solid black 1px;
@@ -43,6 +44,6 @@ header{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  height: 500px;
+  align-items:flex-end;
+  height: 300px;
 }
