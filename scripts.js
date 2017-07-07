@@ -4,23 +4,29 @@ var $source = $("#Source");
 var $aux = $("#Aux");
 var $target = $("#Target");
 var movesCount;
+var maxMoves;
 
 $start.on("click",function(){
   $('.disc').remove();
   draw();
+  maxMoves = Math.pow(2,num) -1;
   if (num%2 === 0){
     $target = $("#Aux");
     $aux = $("#Target");
   }
   movesCount=0;
-  legalMove($source,$target);
-  legalMove($source,$aux);
-  legalMove($target,$aux);
-  legalMove($source,$target);
-  legalMove($aux,$target);
-  legalMove($target,$source);
-  legalMove($aux,$target);
-  legalMove($source,$target);
+  while (movesCount < maxMoves){
+    if (movesCount%3 === 0){
+      legalMove($source,$target);
+    }
+    if (movesCount%3 === 1){
+      legalMove($source,$aux);
+    }
+    if (movesCount%3 ===2){
+      legalMove($target,$aux);
+    }
+    movesCount++
+  }
 });
 
 //check for a legal move, then make that move!
@@ -83,50 +89,3 @@ function getRanC() {
   var b = Math.floor(Math.random() * 255);
   return "rgb(" + r + "," + g + "," + b + ")";
 }
-
-
-/**
-//get number of disks from user
-var setNum = () => num = $('#number').val();
-
-
-function solve(source, target, auxi, n){
-    if (n>0){
-      //console.log(source.innerHTML)
-      solve(source, auxi, target, n-1);
-      //console.log(source.childNodes[0])
-      stack.push([source,target]);
-      //target.push(source.pop()); //make this work for .divs.
-      solve(auxi, target, source, n-1);
-    }
-}
-
-function move(from,to){
-//  console.log(from)
-    console.log("from: " + from.id + "  to:  " + to.id)
-    to.insertBefore(from.childNodes[0],to.firstChild);
-}
-
-function play(){
-  setNum();
-  stack = [];
-  sourceDiv.innerHTML = "";
-  targetDiv.innerHTML = "";
-  auxDiv.innerHTML = "";
-  draw();
-  solve(sourceDiv,targetDiv,auxDiv,num);
-  var loop = 0;
-  var id = setInterval(function() {
-    loop++;
-    if(loop === Math.pow(2,num)-1)
-    {
-        clearInterval(id);
-    }
-    //console.log(loop)
-    move(stack[loop-1][0],stack[loop-1][1])
-}, 1000);
-  //for (let i=0;i<stack.length;i++){
-//    move(stack[i][0],stack[i][1]);
-//  }
-}
-**/
