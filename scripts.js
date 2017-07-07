@@ -1,15 +1,36 @@
 var num;
-var nextMove;
 var $start = $('#start');
 var $source = $("#Source");
-var $target = $("#Target");
 var $aux = $("#Aux");
+var $target = $("#Target");
 
 
 $start.on("click",function(){
   $('.disc').remove();
   draw();
+  if (num%2 === 0){
+    $target = $("#Aux");
+    $aux = $("#Target");
+  }
+  move($source,$target);
+  move($source,$aux);
+  move($target,$aux);
+  move($source,$target);
+  move($aux,$target);
+  move($target,$source);
+  move($aux,$target);
+  move($source,$target);
 });
+
+function move(fromDiv,toDiv){
+  var toId = toDiv.attr('id')
+  var disksOnTarget = $('#'+ toId+ ' .disc').length;
+  var newTop = (361 - disksOnTarget*15) + "px";
+  var diskToMove = $('#' + fromDiv.attr('id') + ' .disc')[0];
+  console.log(diskToMove)
+  diskToMove.style.top = newTop;
+  toDiv.prepend(diskToMove);
+}
 
 //draw the disks onto the source div
 function draw(){
@@ -22,6 +43,7 @@ function draw(){
     disc.css('top',361-(num-i-1)*15);
     disc.css('height',"15px");
     disc.css('background-color',getRanC());
+    //console.log(disc);
     $source.append(disc);
   }
 }
