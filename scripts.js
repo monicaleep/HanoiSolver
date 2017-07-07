@@ -8,6 +8,11 @@ var $aux = $("#Aux");
 
 $start.on("click",function(){
   $('.disc').remove();
+  draw();
+});
+
+//draw the disks onto the source div
+function draw(){
   num = $('#number').val();
   for(let i = 0; i<num; i++){
     var disc = $("<div></div>");
@@ -18,12 +23,39 @@ $start.on("click",function(){
     disc.css('height',"15px");
     disc.css('background-color',getRanC());
     $source.append(disc);
-
   }
-});
+}
+
+//helper function to get a random color for each disk
+function getRanC() {
+  var r = Math.floor(Math.random() * 255);
+  var g = Math.floor(Math.random() * 255);
+  var b = Math.floor(Math.random() * 255);
+  return "rgb(" + r + "," + g + "," + b + ")";
+}
 
 
+/**
+//get number of disks from user
+var setNum = () => num = $('#number').val();
 
+
+function solve(source, target, auxi, n){
+    if (n>0){
+      //console.log(source.innerHTML)
+      solve(source, auxi, target, n-1);
+      //console.log(source.childNodes[0])
+      stack.push([source,target]);
+      //target.push(source.pop()); //make this work for .divs.
+      solve(auxi, target, source, n-1);
+    }
+}
+
+function move(from,to){
+//  console.log(from)
+    console.log("from: " + from.id + "  to:  " + to.id)
+    to.insertBefore(from.childNodes[0],to.firstChild);
+}
 
 function play(){
   setNum();
@@ -47,41 +79,4 @@ function play(){
 //    move(stack[i][0],stack[i][1]);
 //  }
 }
-
-function move(from,to){
-//  console.log(from)
-    console.log("from: " + from.id + "  to:  " + to.id)
-    to.insertBefore(from.childNodes[0],to.firstChild);
-
-}
-//draw the disks onto the source div
-function draw(){
-  for (let i = 0; i<num;i++){
-    piece = document.createElement("div");
-    piece.className = "piece"
-    piece.style.width = (i+1)*22 + "px";
-    piece.style.height = (i+1)*22 + "px";
-    sourceDiv.appendChild(piece);
-  }
-}
-
-//get number of disks from user
-var setNum = () => num = $('#number').val();
-
-function solve(source, target, auxi, n){
-    if (n>0){
-      //console.log(source.innerHTML)
-      solve(source, auxi, target, n-1);
-      //console.log(source.childNodes[0])
-      stack.push([source,target]);
-      //target.push(source.pop()); //make this work for .divs.
-      solve(auxi, target, source, n-1);
-    }
-}
-
-function getRanC() {
-  var r = Math.floor(Math.random() * 255);
-  var g = Math.floor(Math.random() * 255);
-  var b = Math.floor(Math.random() * 255);
-  return "rgb(" + r + "," + g + "," + b + ")";
-}
+**/
