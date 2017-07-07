@@ -6,8 +6,10 @@ var $target;
 var movesCount;
 var maxMoves;
 var intervalId;
+const BAR_TOP =($(".bar").offset().top)-15;
 
 $start.on("click",function(){
+
   if (intervalId){
     return;
   }
@@ -36,8 +38,6 @@ $start.on("click",function(){
 
 function makeMoves(){
   if (movesCount%3 === 0){
-    console.log($source);
-    console.log($target);
     legalMove($source,$target);
   }
   if (movesCount%3 === 1){
@@ -82,7 +82,7 @@ function legalMove(divA,divB){
 function move(fromDiv,toDiv){
     var toId = toDiv.attr('id')
     var disksOnTarget = $('#'+ toId+ ' .disc').length;
-    var newTop = (361 - disksOnTarget*15) + "px";
+    var newTop = (BAR_TOP - disksOnTarget*15) + "px";
     var diskToMove = $('#' + fromDiv.attr('id') + ' .disc')[0];
     diskToMove.style.top = newTop;
     toDiv.prepend(diskToMove);
@@ -97,7 +97,7 @@ function draw(){
     disc.attr('class',"disc");
     disc.attr('id','d'+(i+1));
     disc.css('width',(i+1)*20+"px");
-    disc.css('top',361-(num-i-1)*15);
+    disc.css('top',BAR_TOP-(num-i-1)*15);
     disc.css('height',"15px");
     disc.css('background-color',getRanC());
     //console.log(disc);
