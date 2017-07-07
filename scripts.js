@@ -9,7 +9,6 @@ var intervalId;
 const BAR_TOP =($(".bar").offset().top)-15;
 
 $start.on("click",function(){
-
   if (intervalId){
     return;
   }
@@ -66,7 +65,7 @@ function legalMove(divA,divB){
     move(divB,divA);
     return;
   }
-  //you have to compare lengths
+  //If both discs exist, you have to compare lengths
   var lenA = parseInt(diskOnA.style.width,10);
   var lenB = parseInt(diskOnB.style.width,10);
   if (lenA < lenB){
@@ -79,6 +78,7 @@ function legalMove(divA,divB){
   }
   alert("an error has occurred")
 }
+
 function move(fromDiv,toDiv){
     var toId = toDiv.attr('id')
     var disksOnTarget = $('#'+ toId+ ' .disc').length;
@@ -86,7 +86,6 @@ function move(fromDiv,toDiv){
     var diskToMove = $('#' + fromDiv.attr('id') + ' .disc')[0];
     diskToMove.style.top = newTop;
     toDiv.prepend(diskToMove);
-
 }
 
 //draw the disks onto the source div
@@ -100,7 +99,6 @@ function draw(){
     disc.css('top',BAR_TOP-(num-i-1)*15);
     disc.css('height',"15px");
     disc.css('background-color',getRanC());
-    //console.log(disc);
     $source.append(disc);
   }
 }
