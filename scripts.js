@@ -5,32 +5,52 @@ var $aux;
 var $target;
 var movesCount;
 var maxMoves;
+var intervalId;
 
 $start.on("click",function(){
+  if (intervalId){
+    return;
+  }
   $('.disc').remove();
   draw();
   maxMoves = Math.pow(2,num) -1;
-  var $aux = $("#Aux");
-  var $target = $("#Target");
+  $aux = $("#Aux");
+  $target = $("#Target");
   if (num%2 === 0){
     $target = $("#Aux");
-    console.log($target);
     $aux = $("#Target");
   }
   movesCount=0;
-  while (movesCount < maxMoves){
-    if (movesCount%3 === 0){
-      legalMove($source,$target);
+  intervalId = setInterval(function(){
+    if(movesCount < maxMoves){
+      makeMoves();
     }
-    if (movesCount%3 === 1){
-      legalMove($source,$aux);
+    else{
+      clearInterval(intervalId);
+      intervalId = null;
+      movesCount = 0;
     }
-    if (movesCount%3 ===2){
-      legalMove($target,$aux);
-    }
-    movesCount++
-  }
+  }, 500)
 });
+
+
+function makeMoves(){
+  if (movesCount%3 === 0){
+    console.log($source);
+    console.log($target);
+    legalMove($source,$target);
+  }
+  if (movesCount%3 === 1){
+    legalMove($source,$aux);
+  }
+  if (movesCount%3 ===2){
+    legalMove($target,$aux);
+  }
+  movesCount++;
+
+}
+
+
 
 //check for a legal move, then make that move!
 function legalMove(divA,divB){
