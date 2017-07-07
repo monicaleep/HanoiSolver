@@ -12,22 +12,39 @@ $start.on("click",function(){
     $target = $("#Aux");
     $aux = $("#Target");
   }
-  move($source,$target);
+  legalMove($aux,$source);
+  /**move($source,$target);
   move($source,$aux);
   move($target,$aux);
   move($source,$target);
   move($aux,$target);
   move($target,$source);
   move($aux,$target);
-  move($source,$target);
+  move($source,$target); **/
 });
 
+//check for a legal move, then make that move!
+function legalMove(divA,divB){
+  var diskOnA = $('#' + divA.attr('id') + ' .disc')[0];
+  var diskOnB = $('#' + divB.attr('id') + ' .disc')[0];
+  if (diskOnA && !diskOnB){
+    move(divA,divB);
+    return;
+  }
+  else if (!diskOnA && diskOnB){
+    move(divB,divA);
+    return;
+  }
+  //you have to comapre lengths
+
+
+}
 function move(fromDiv,toDiv){
   var toId = toDiv.attr('id')
   var disksOnTarget = $('#'+ toId+ ' .disc').length;
   var newTop = (361 - disksOnTarget*15) + "px";
   var diskToMove = $('#' + fromDiv.attr('id') + ' .disc')[0];
-  console.log(diskToMove)
+  console.log(parseInt(diskToMove.style.width,10));
   diskToMove.style.top = newTop;
   toDiv.prepend(diskToMove);
 }
