@@ -84,6 +84,7 @@ function move(fromDiv,toDiv){
     var disksOnTarget = $('#'+ toId+ ' .disc').length;
     var newTop = (BAR_TOP - disksOnTarget*15) + "px";
     var diskToMove = $('#' + fromDiv.attr('id') + ' .disc')[0];
+    console.log($('#' + fromDiv.attr('id') + ' .disc').first())
     diskToMove.style.top = newTop;
     toDiv.prepend(diskToMove);
 }
@@ -95,10 +96,7 @@ function draw(){
     var disc = $("<div></div>");
     disc.attr('class',"disc");
     disc.attr('id','d'+(i+1));
-    disc.css('width',(i+1)*20+"px");
-    disc.css('top',BAR_TOP-(num-i-1)*15);
-    disc.css('height',"15px");
-    disc.css('background-color',getRanC());
+    disc.css({ 'width': (i+1)*20+"px" , 'top': BAR_TOP-(num-i-1)*15 , 'height': "15px", 'background-color': getRanC()});
     disc.hide().appendTo($source).fadeIn("slow");
   }
 }
