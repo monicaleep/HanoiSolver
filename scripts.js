@@ -87,7 +87,7 @@ $(document).ready(function(){
       var disksOnTarget = $('#'+ toId+ ' .disc').length;
       var newTop = (BAR_TOP - disksOnTarget*DISK_HEIGHT) + "px";
       var diskToMove = $('#' + fromDiv.attr('id') + ' .disc').first();
-      diskToMove.fadeOut(200, function(){
+      diskToMove.fadeOut(300, function(){
         diskToMove.css({'top':newTop});
         diskToMove.prependTo(toDiv).fadeIn(500)
       })
@@ -100,7 +100,7 @@ $(document).ready(function(){
       var disc = $("<div></div>");
       disc.attr('class',"disc");
       disc.attr('id','d'+(i+1));
-      disc.css({ 'width': (i+1)*MIN_WIDTH+"px" , 'top': BAR_TOP-(num-i-1)*DISK_HEIGHT , 'height': "15px", 'background-color': getRanC()});
+      disc.css({ 'width': (i+1)*MIN_WIDTH+"px" , 'top': BAR_TOP-(num-i-1)*DISK_HEIGHT , 'height': DISK_HEIGHT + "px", 'background-color': getRanC()});
       disc.hide().appendTo($source).fadeIn(i*200);
     }
   }
