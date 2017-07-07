@@ -1,8 +1,8 @@
 var num;
 var $start = $('#start');
 var $source = $("#Source");
-var $aux = $("#Aux");
-var $target = $("#Target");
+var $aux;
+var $target;
 var movesCount;
 var maxMoves;
 
@@ -10,8 +10,11 @@ $start.on("click",function(){
   $('.disc').remove();
   draw();
   maxMoves = Math.pow(2,num) -1;
+  var $aux = $("#Aux");
+  var $target = $("#Target");
   if (num%2 === 0){
     $target = $("#Aux");
+    console.log($target);
     $aux = $("#Target");
   }
   movesCount=0;
@@ -57,13 +60,13 @@ function legalMove(divA,divB){
   alert("an error has occurred")
 }
 function move(fromDiv,toDiv){
-  var toId = toDiv.attr('id')
-  var disksOnTarget = $('#'+ toId+ ' .disc').length;
-  var newTop = (361 - disksOnTarget*15) + "px";
-  var diskToMove = $('#' + fromDiv.attr('id') + ' .disc')[0];
-  //console.log(parseInt(diskToMove.style.width,10));
-  diskToMove.style.top = newTop;
-  toDiv.prepend(diskToMove);
+    var toId = toDiv.attr('id')
+    var disksOnTarget = $('#'+ toId+ ' .disc').length;
+    var newTop = (361 - disksOnTarget*15) + "px";
+    var diskToMove = $('#' + fromDiv.attr('id') + ' .disc')[0];
+    diskToMove.style.top = newTop;
+    toDiv.prepend(diskToMove);
+
 }
 
 //draw the disks onto the source div
