@@ -3,7 +3,7 @@ var $start = $('#start');
 var $source = $("#Source");
 var $aux = $("#Aux");
 var $target = $("#Target");
-
+var movesCount;
 
 $start.on("click",function(){
   $('.disc').remove();
@@ -12,39 +12,50 @@ $start.on("click",function(){
     $target = $("#Aux");
     $aux = $("#Target");
   }
-  legalMove($aux,$source);
-  /**move($source,$target);
-  move($source,$aux);
-  move($target,$aux);
-  move($source,$target);
-  move($aux,$target);
-  move($target,$source);
-  move($aux,$target);
-  move($source,$target); **/
+  movesCount=0;
+  legalMove($source,$target);
+  legalMove($source,$aux);
+  legalMove($target,$aux);
+  legalMove($source,$target);
+  legalMove($aux,$target);
+  legalMove($target,$source);
+  legalMove($aux,$target);
+  legalMove($source,$target);
 });
 
 //check for a legal move, then make that move!
 function legalMove(divA,divB){
   var diskOnA = $('#' + divA.attr('id') + ' .disc')[0];
   var diskOnB = $('#' + divB.attr('id') + ' .disc')[0];
+  //no disk on divB
   if (diskOnA && !diskOnB){
     move(divA,divB);
     return;
   }
+  //no disk on divA
   else if (!diskOnA && diskOnB){
     move(divB,divA);
     return;
   }
-  //you have to comapre lengths
-
-
+  //you have to compare lengths
+  var lenA = parseInt(diskOnA.style.width,10);
+  var lenB = parseInt(diskOnB.style.width,10);
+  if (lenA < lenB){
+    move(divA,divB);
+    return
+  }
+  else{
+    move(divB,divA);
+    return;
+  }
+  alert("an error has occurred")
 }
 function move(fromDiv,toDiv){
   var toId = toDiv.attr('id')
   var disksOnTarget = $('#'+ toId+ ' .disc').length;
   var newTop = (361 - disksOnTarget*15) + "px";
   var diskToMove = $('#' + fromDiv.attr('id') + ' .disc')[0];
-  console.log(parseInt(diskToMove.style.width,10));
+  //console.log(parseInt(diskToMove.style.width,10));
   diskToMove.style.top = newTop;
   toDiv.prepend(diskToMove);
 }
