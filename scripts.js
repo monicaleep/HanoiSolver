@@ -31,7 +31,7 @@ $start.on("click",function(){
       intervalId = null;
       movesCount = 0;
     }
-  }, 500)
+  }, 600)
 });
 
 
@@ -46,7 +46,6 @@ function makeMoves(){
     legalMove($target,$aux);
   }
   movesCount++;
-
 }
 
 
@@ -76,7 +75,8 @@ function legalMove(divA,divB){
     move(divB,divA);
     return;
   }
-  alert("an error has occurred")
+  alert("an error has occurred");
+  return;
 }
 
 function move(fromDiv,toDiv){
@@ -99,7 +99,7 @@ function draw(){
     disc.css('top',BAR_TOP-(num-i-1)*15);
     disc.css('height',"15px");
     disc.css('background-color',getRanC());
-    $source.append(disc);
+    disc.hide().appendTo($source).fadeIn("slow");
   }
 }
 
